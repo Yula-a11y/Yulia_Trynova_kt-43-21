@@ -4,5 +4,8 @@
 	{
 		public int CathedraId { get; set; }
 		public required string Name { get; set; }
+
+		public int? HeadOfDepartmentId { get; set; }
+		public Teacher? HeadOfDepartment { get; set; }
 	}
 }

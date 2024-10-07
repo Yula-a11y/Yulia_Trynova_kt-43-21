@@ -18,16 +18,19 @@ namespace Yulya_trynova_kt_43_21.Database.Configuration
 					.ValueGeneratedOnAdd()
 					.HasColumnName("discipline_id")
 					.HasComment("Идентификатор записи дисциплины");
+
 				builder.Property(p => p.Name)
 					.IsRequired()
 					.HasColumnName("discipline_name")
 					.HasColumnType(ColumnType.String).HasMaxLength(100)
 					.HasComment("Название дисциплины");
+
 				builder.Property(p => p.TeacherId)
 					.IsRequired()
 					.HasColumnName("f_teacher_id")
 					.HasColumnType(ColumnType.Int)
 					.HasComment("Идентификатор преподавателя");
+
 				builder.ToTable(TableName)
 					.HasOne(p => p.Teacher)
 					.WithMany()

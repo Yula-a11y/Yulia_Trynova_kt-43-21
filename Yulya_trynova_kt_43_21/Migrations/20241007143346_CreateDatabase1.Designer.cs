@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Yulya_trynova_kt_43_21.Database;
 
@@ -11,9 +12,11 @@ using Yulya_trynova_kt_43_21.Database;
 namespace Yulya_trynova_kt_43_21.Migrations
 {
     [DbContext(typeof(TeacherDBContext))]
-    partial class TeacherDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241007143346_CreateDatabase1")]
+    partial class CreateDatabase1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
