@@ -11,9 +11,9 @@ using Yulya_trynova_kt_43_21.Database;
 
 namespace Yulya_trynova_kt_43_21.Migrations
 {
-    [DbContext(typeof(TeacherDBContext))]
-    [Migration("20241007143346_CreateDatabase1")]
-    partial class CreateDatabase1
+    [DbContext(typeof(TeacherDbContext))]
+    [Migration("20241116094537_CreateDatabase")]
+    partial class CreateDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,35 +24,6 @@ namespace Yulya_trynova_kt_43_21.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Yulya_trynova_kt_43_21.Models.Cathedra", b =>
-                {
-                    b.Property<int>("CathedraId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("cathedra_id")
-                        .HasComment("Идентификатор записи кафедры");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CathedraId"));
-
-                    b.Property<int?>("HeadOfDepartmentId")
-                        .HasColumnType("int")
-                        .HasColumnName("head_of_department_id")
-                        .HasComment("Идентификатор заведующего кафедрой");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar")
-                        .HasColumnName("cathedra_name")
-                        .HasComment("Название кафедры");
-
-                    b.HasKey("CathedraId");
-
-                    b.HasIndex("HeadOfDepartmentId");
-
-                    b.ToTable("cathedras", (string)null);
-                });
 
             modelBuilder.Entity("Yulya_trynova_kt_43_21.Models.Discipline", b =>
                 {
@@ -95,8 +66,14 @@ namespace Yulya_trynova_kt_43_21.Migrations
 
                     b.Property<int>("CathedraId")
                         .HasColumnType("int")
-                        .HasColumnName("f_department_id")
+                        .HasColumnName("f_cathedra_id")
                         .HasComment("Идентификатор кафедры");
+
+                    b.Property<string>("Degree")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar")
+                        .HasColumnName("teacher_degree")
+                        .HasComment("Ученая степень преподавателя");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -119,6 +96,13 @@ namespace Yulya_trynova_kt_43_21.Migrations
                         .HasColumnName("teacher_middlename")
                         .HasComment("Отчество преподавателя");
 
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar")
+                        .HasColumnName("teacher_position")
+                        .HasComment("Должность преподавателя");
+
                     b.HasKey("TeacherId");
 
                     b.HasIndex("CathedraId");
@@ -126,15 +110,35 @@ namespace Yulya_trynova_kt_43_21.Migrations
                     b.ToTable("teachers", (string)null);
                 });
 
-            modelBuilder.Entity("Yulya_trynova_kt_43_21.Models.Cathedra", b =>
+            modelBuilder.Entity("Yulya_trynova_kt_43_21.Models.Yulya_trynova_kt_43_21.Models.Cathedra", b =>
                 {
-                    b.HasOne("Yulya_trynova_kt_43_21.Models.Teacher", "HeadOfDepartment")
-                        .WithMany()
-                        .HasForeignKey("HeadOfDepartmentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .HasConstraintName("FK_Cathedra_HeadOfDepartment");
+                    b.Property<int>("CathedraId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("cathedra_id")
+                        .HasComment("Идентификатор записи кафедры");
 
-                    b.Navigation("HeadOfDepartment");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CathedraId"));
+
+                    b.Property<int?>("HeadTeacherId")
+                        .HasColumnType("int")
+                        .HasColumnName("f_head_teacher_id")
+                        .HasComment("Идентификатор заведующего кафедрой");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar")
+                        .HasColumnName("cathedra_name")
+                        .HasComment("Название кафедры");
+
+                    b.HasKey("CathedraId");
+
+                    b.HasIndex("HeadTeacherId")
+                        .IsUnique()
+                        .HasFilter("[f_head_teacher_id] IS NOT NULL");
+
+                    b.ToTable("cathedras", (string)null);
                 });
 
             modelBuilder.Entity("Yulya_trynova_kt_43_21.Models.Discipline", b =>
@@ -150,13 +154,23 @@ namespace Yulya_trynova_kt_43_21.Migrations
 
             modelBuilder.Entity("Yulya_trynova_kt_43_21.Models.Teacher", b =>
                 {
-                    b.HasOne("Yulya_trynova_kt_43_21.Models.Cathedra", "Cathedra")
+                    b.HasOne("Yulya_trynova_kt_43_21.Models.Yulya_trynova_kt_43_21.Models.Cathedra", "Cathedra")
                         .WithMany()
                         .HasForeignKey("CathedraId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Cathedra");
+                });
+
+            modelBuilder.Entity("Yulya_trynova_kt_43_21.Models.Yulya_trynova_kt_43_21.Models.Cathedra", b =>
+                {
+                    b.HasOne("Yulya_trynova_kt_43_21.Models.Teacher", "HeadTeacher")
+                        .WithOne()
+                        .HasForeignKey("Yulya_trynova_kt_43_21.Models.Yulya_trynova_kt_43_21.Models.Cathedra", "HeadTeacherId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("HeadTeacher");
                 });
 #pragma warning restore 612, 618
         }

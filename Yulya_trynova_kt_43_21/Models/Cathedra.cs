@@ -1,11 +1,20 @@
 ﻿namespace Yulya_trynova_kt_43_21.Models
 {
-	public class Cathedra
-	{
-		public int CathedraId { get; set; }
-		public required string Name { get; set; }
+    using System.Text.Json.Serialization;
 
-		public int? HeadOfDepartmentId { get; set; }
-		public Teacher? HeadOfDepartment { get; set; }
-	}
+    namespace Yulya_trynova_kt_43_21.Models
+    {
+        public class Cathedra
+        {
+            public int CathedraId { get; set; }
+
+            public required string? Name { get; set; }
+
+            public int? HeadTeacherId { get; set; }
+
+            [JsonIgnore]
+            public Teacher? HeadTeacher { get; set; }
+        }
+    }
+
 }

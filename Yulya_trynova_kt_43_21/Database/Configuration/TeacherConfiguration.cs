@@ -8,11 +8,13 @@ namespace Yulya_trynova_kt_43_21.Database.Configuration
 	public class TeacherConfiguration : IEntityTypeConfiguration<Teacher>
 	{
 		private const string TableName = "teachers";
+
 		public void Configure(EntityTypeBuilder<Teacher> builder)
 		{
 			builder
 				.ToTable(TableName)
 				.HasKey(p => p.TeacherId);
+
 			builder.Property(p => p.TeacherId)
 				.ValueGeneratedOnAdd()
 				.HasColumnName("teacher_id")
@@ -31,13 +33,25 @@ namespace Yulya_trynova_kt_43_21.Database.Configuration
 				.HasComment("Фамилия преподавателя");
 
 			builder.Property(p => p.MiddleName)
+				.IsRequired()
 				.HasColumnName("teacher_middlename")
 				.HasColumnType(ColumnType.String).HasMaxLength(100)
 				.HasComment("Отчество преподавателя");
 
+			builder.Property(p => p.Position)
+				.IsRequired()
+				.HasColumnName("teacher_position")
+				.HasColumnType(ColumnType.String).HasMaxLength(100)
+				.HasComment("Должность преподавателя");
+
+			builder.Property(p => p.Degree)
+				.HasColumnName("teacher_degree")
+				.HasColumnType(ColumnType.String).HasMaxLength(100)
+				.HasComment("Ученая степень преподавателя");
+
 			builder.Property(p => p.CathedraId)
 				.IsRequired()
-				.HasColumnName("f_department_id")
+				.HasColumnName("f_cathedra_id")
 				.HasColumnType(ColumnType.Int)
 				.HasComment("Идентификатор кафедры");
 
@@ -46,8 +60,6 @@ namespace Yulya_trynova_kt_43_21.Database.Configuration
 				.WithMany()
 				.HasForeignKey(p => p.CathedraId)
 				.OnDelete(DeleteBehavior.Cascade);
-			builder.Navigation(p => p.Cathedra)
-				.AutoInclude();
 		}
 	}
 }

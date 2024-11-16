@@ -14,7 +14,7 @@ try
 	builder.Services.AddEndpointsApiExplorer();
 	builder.Services.AddSwaggerGen();
 
-	builder.Services.AddDbContext<TeacherDBContext>(options =>
+	builder.Services.AddDbContext<TeacherDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
