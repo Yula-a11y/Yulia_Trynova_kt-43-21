@@ -11,9 +11,6 @@
             public required string? Name { get; set; }
 
             public int? HeadTeacherId { get; set; }
-
-            [JsonIgnore]
-            public Teacher? HeadTeacher { get; set; }
         }
     }
 

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
 using Yulya_trynova_kt_43_21.Database;
+using Yulya_trynova_kt_43_21.ServiceExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +18,9 @@ try
 	builder.Services.AddDbContext<TeacherDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+    builder.Services.AddServices();
 
-	var app = builder.Build();
+    var app = builder.Build();
 
 	// Configure the HTTP request pipeline.
 	if (app.Environment.IsDevelopment())

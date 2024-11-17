@@ -31,12 +31,6 @@ namespace Yulya_trynova_kt_43_21.Database.Configuration
 				.HasColumnName("f_head_teacher_id")
 				.HasColumnType(ColumnType.Int)
 				.HasComment("Идентификатор заведующего кафедрой");
-
-			builder.ToTable(TableName)
-				.HasOne(p => p.HeadTeacher)
-				.WithOne()
-				.HasForeignKey<Cathedra>(p => p.HeadTeacherId)
-				.OnDelete(DeleteBehavior.NoAction);
 		}
 	}
 }

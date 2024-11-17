@@ -69,13 +69,6 @@ namespace Yulya_trynova_kt_43_21.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_cathedras_f_head_teacher_id",
-                table: "cathedras",
-                column: "f_head_teacher_id",
-                unique: true,
-                filter: "[f_head_teacher_id] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_disciplines_f_teacher_id",
                 table: "disciplines",
                 column: "f_teacher_id");
@@ -84,22 +77,11 @@ namespace Yulya_trynova_kt_43_21.Migrations
                 name: "IX_teachers_f_cathedra_id",
                 table: "teachers",
                 column: "f_cathedra_id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_cathedras_teachers_f_head_teacher_id",
-                table: "cathedras",
-                column: "f_head_teacher_id",
-                principalTable: "teachers",
-                principalColumn: "teacher_id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_cathedras_teachers_f_head_teacher_id",
-                table: "cathedras");
-
             migrationBuilder.DropTable(
                 name: "disciplines");
 

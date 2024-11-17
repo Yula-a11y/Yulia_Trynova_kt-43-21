@@ -12,7 +12,7 @@ using Yulya_trynova_kt_43_21.Database;
 namespace Yulya_trynova_kt_43_21.Migrations
 {
     [DbContext(typeof(TeacherDbContext))]
-    [Migration("20241116094537_CreateDatabase")]
+    [Migration("20241117144943_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />
@@ -134,10 +134,6 @@ namespace Yulya_trynova_kt_43_21.Migrations
 
                     b.HasKey("CathedraId");
 
-                    b.HasIndex("HeadTeacherId")
-                        .IsUnique()
-                        .HasFilter("[f_head_teacher_id] IS NOT NULL");
-
                     b.ToTable("cathedras", (string)null);
                 });
 
@@ -161,16 +157,6 @@ namespace Yulya_trynova_kt_43_21.Migrations
                         .IsRequired();
 
                     b.Navigation("Cathedra");
-                });
-
-            modelBuilder.Entity("Yulya_trynova_kt_43_21.Models.Yulya_trynova_kt_43_21.Models.Cathedra", b =>
-                {
-                    b.HasOne("Yulya_trynova_kt_43_21.Models.Teacher", "HeadTeacher")
-                        .WithOne()
-                        .HasForeignKey("Yulya_trynova_kt_43_21.Models.Yulya_trynova_kt_43_21.Models.Cathedra", "HeadTeacherId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.Navigation("HeadTeacher");
                 });
 #pragma warning restore 612, 618
         }
