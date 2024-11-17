@@ -6,7 +6,6 @@ namespace Yulya_trynova_kt_43_21.Models
 {
 	public class Teacher
 	{
-		[JsonIgnore]
 		public int TeacherId { get; set; }
 
 		public string FirstName { get; set; } = string.Empty;
