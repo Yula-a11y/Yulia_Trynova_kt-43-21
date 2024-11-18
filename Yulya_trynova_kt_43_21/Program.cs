@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
@@ -29,6 +30,7 @@ try
 		app.UseSwaggerUI();
 	}
 
+	app.UseMiddleware<ExceptionHandlerMiddleware>();
 	app.UseAuthorization();
 
 	app.MapControllers();
