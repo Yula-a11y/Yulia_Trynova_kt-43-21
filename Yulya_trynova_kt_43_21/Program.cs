@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
 using Yulya_trynova_kt_43_21.Database;
+using Yulya_trynova_kt_43_21.Middlewares;
 using Yulya_trynova_kt_43_21.ServiceExtensions;
 
 var builder = WebApplication.CreateBuilder(args);

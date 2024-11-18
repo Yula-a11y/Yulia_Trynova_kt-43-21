@@ -14,7 +14,7 @@ namespace Yulya_trynova_kt_43_21.Interfaces
 
         public Task<Teacher[]> GetTeachersByPositionAsync(TeacherPositionFilter filter, CancellationToken cancellationToken = default);
 
-        public Task<Teacher[]> GetTeachersByFIOAsync(TeacherFIOFilter filter, CancellationToken cancellationToken = default);
+        public Task<Teacher[]> GetTeachersByNameAsync(TeacherNameFilter filter, CancellationToken cancellationToken = default);
 
 
     }
@@ -47,9 +47,9 @@ namespace Yulya_trynova_kt_43_21.Interfaces
             return teachers;
         }
 
-        public Task<Teacher[]> GetTeachersByFIOAsync(TeacherFIOFilter filter, CancellationToken cancellationToken = default)
+        public Task<Teacher[]> GetTeachersByNameAsync(TeacherNameFilter filter, CancellationToken cancellationToken = default)
         {
-            var teachers = _dbContext.Set<Teacher>().Where(t => t.FirstName == filter.FirstName && t.LastName == filter.LastName && t.MiddleName == filter.MiddleName).ToArrayAsync();
+            var teachers = _dbContext.Set<Teacher>().Where(t => t.FirstName == filter.FirstName).ToArrayAsync();
             return teachers;
         }
 

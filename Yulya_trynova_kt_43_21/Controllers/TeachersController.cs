@@ -48,10 +48,10 @@ namespace Yulya_trynova_kt_43_21.Controllers
 			return Ok(teachers);
 		}
 
-		[HttpPost("GetTeachersByFIO")]
-		public async Task<IActionResult> GetTeachersByFIOAsync(TeacherFIOFilter filter, CancellationToken cancellationToken = default)
+		[HttpPost("GetTeachersByName")]
+		public async Task<IActionResult> GetTeachersByNameAsync(TeacherNameFilter filter, CancellationToken cancellationToken = default)
 		{
-			var teachers = await _teacherGetterService.GetTeachersByFIOAsync(filter, cancellationToken);
+			var teachers = await _teacherGetterService.GetTeachersByNameAsync(filter, cancellationToken);
 			return Ok(teachers);
 		}
 
