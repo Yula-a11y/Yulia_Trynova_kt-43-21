@@ -2,6 +2,7 @@
 {
 	public class TeacherCathedraFilter
 	{
-		public string CathedraName { get; set; } = string.Empty;
+        //Значение по умолчанию для свойства — пустая строка.
+        public string CathedraName { get; set; } = string.Empty;
 	}
 }

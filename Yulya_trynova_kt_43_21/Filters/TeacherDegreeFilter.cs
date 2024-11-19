@@ -2,7 +2,8 @@
 {
 	public class TeacherDegreeFilter
 	{
-		public string? Degree { get; set; }
+        //? означает, что свойство может быть null.
+        public string? Degree { get; set; }
 
 	}
 }

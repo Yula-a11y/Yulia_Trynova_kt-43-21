@@ -47,15 +47,28 @@ namespace Yulya_trynova_kt_43_21.Controllers
 			var teachers = await _teacherGetterService.GetTeachersByPositionAsync(filter, cancellationToken);
 			return Ok(teachers);
 		}
+		//
+        [HttpPost("GetTeachersByID")]
+        public async Task<IActionResult> GetTeachersByIDAsync(TeacherIDFilter filter, CancellationToken cancellationToken = default)
+        {
+            var teachers = await _teacherGetterService.GetTeachersByIDAsync(filter, cancellationToken);
+            return Ok(teachers);
+        }
 
-		[HttpPost("GetTeachersByName")]
-		public async Task<IActionResult> GetTeachersByNameAsync(TeacherNameFilter filter, CancellationToken cancellationToken = default)
-		{
-			var teachers = await _teacherGetterService.GetTeachersByNameAsync(filter, cancellationToken);
-			return Ok(teachers);
-		}
+        [HttpPost("GetTeachersByCathedraID")]
+        public async Task<IActionResult> GetTeachersByCathedraIDAsync(TeacherCathedraIDFilter filter, CancellationToken cancellationToken = default)
+        {
+            var teachers = await _teacherGetterService.GetTeachersByCathedraIDAsync(filter, cancellationToken);
+            return Ok(teachers);
+        }
 
-		[HttpPost("Create")]
+
+
+
+
+
+        ////////////////
+        [HttpPost("Create")]
 		public async Task<IActionResult> CreateTeacherAsync(Teacher teacher, CancellationToken cancellationToken = default)
 		{
 			await _teacherModifierService.CreateTeacherAsync(teacher, cancellationToken);
@@ -75,5 +88,7 @@ namespace Yulya_trynova_kt_43_21.Controllers
 			await _teacherModifierService.RemoveTeacherAsync(teacher, cancellationToken);
 			return Ok();
 		}
+
+
 	}
 }

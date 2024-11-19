@@ -1,0 +1,7 @@
+﻿namespace Yulya_trynova_kt_43_21.Filters
+{
+    public class TeacherIDFilter
+    {
+        public int ID { get; set; }
+    }
+}
