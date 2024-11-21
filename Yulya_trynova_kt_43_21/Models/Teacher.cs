@@ -1,5 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+using Yulya_trynova_kt_43_21.Models;
+using System.Net.Sockets;
 using Yulya_trynova_kt_43_21.Models.Yulya_trynova_kt_43_21.Models;
 
 namespace Yulya_trynova_kt_43_21.Models
@@ -25,6 +27,6 @@ namespace Yulya_trynova_kt_43_21.Models
 
 		public bool HasDegree() => Degree != null;
 
-		public bool IsValidPosition() => Regex.IsMatch(Position, @"^[А-ЯЁ][а-яё\s\.]*$");
+		public bool IsValidPosition() => Regex.IsMatch(Position, @"^[А-ЯЁ][а-яё\s\.][а-яё\s\.]*$");
 	}
 }
